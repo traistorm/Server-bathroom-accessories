@@ -10,5 +10,9 @@ public class Controller {
     public String index() {
         return "Greetings from Spring Boot!";
     }
+    @GetMapping("/test")
+    public String Test() {
+        return "Test Spring Boot!";
+    }
 
 }
