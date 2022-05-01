@@ -14,7 +14,7 @@ public class Controller {
 
     @GetMapping("/test")
     public String Test() {
-        return "Test Spring Boot!";
+        return "Test Spring Boot new version!";
     }
 }
 
