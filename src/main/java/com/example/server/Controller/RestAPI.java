@@ -9,6 +9,7 @@ public class RestAPI {
     @RequestMapping("/CheckKey")
     public String checkKey()
     {
+        
         return "Test";
     }
 }
