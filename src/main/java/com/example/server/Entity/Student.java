@@ -11,6 +11,6 @@ import javax.persistence.Table;
 @Table(name = "student")
 public class Student {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
 }
