@@ -18,12 +18,24 @@ public class RestAPI {
 
         return "Test";
     }
-    @PostMapping("key")
-    public ResponseEntity<Student> Key()
+
+    @PostMapping("activeKey/{keyValue}")
+    public ResponseEntity<Student> ActiveKey(@PathVariable("keyValue") String keyValue)
     {
         Student student = new Student();
         student.setId(0);
         student.setName("Cuong Cao Huy");
+        studentRepository.save(student);
+        return new ResponseEntity<Student>(student, HttpStatus.OK);
+    }
+
+    @PostMapping("key")
+    public ResponseEntity<Student> Key(@RequestParam String token)
+    {
+        System.out.println(token);
+        Student student = new Student();
+        student.setId(0);
+        student.setName(token);
         studentRepository.save(student);
         return new ResponseEntity<Student>(student, HttpStatus.OK);
     }
