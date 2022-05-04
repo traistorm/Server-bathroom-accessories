@@ -2,8 +2,6 @@ package com.example.server.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.mindrot.jbcrypt.BCrypt;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
