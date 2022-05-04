@@ -1,6 +1,6 @@
 package com.example.server.Utilities;
 
-import org.json.JSONException;
+/*import org.json.JSONException;
 import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class Function {
-   /* public static String tokenInitialization() // Tạo một token
+    public static String tokenInitialization() // Tạo một token
     {
 
         while (true) // Nếu có lỗi trong quá trình khởi tạo token, sẽ lặp lại thao tác này cho tới khi khởi tạo xong nó!
@@ -149,5 +149,6 @@ public class Function {
             return false;
         }
 
-    }*/
+    }
 }
+*/
