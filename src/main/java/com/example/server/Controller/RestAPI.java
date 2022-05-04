@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.example.server.Utilities.Function.tokenAuthentication;
-import static com.example.server.Utilities.Function.tokenInitialization;
+//import static com.example.server.Utilities.Function.tokenAuthentication;
+//import static com.example.server.Utilities.Function.tokenInitialization;
 
 @RestController
 @RequestMapping("/api")
@@ -30,7 +30,7 @@ public class RestAPI {
     public ResponseEntity<String> activeKey(@PathVariable("keyValue") String keyValue,
                                          @PathVariable("token") String token)
     {
-        if (tokenAuthentication(token))
+        /*if (tokenAuthentication(token))
         {
             Key key = keyService.findKeyByValue(keyValue);
             if (key != null)
@@ -46,7 +46,8 @@ public class RestAPI {
         else
         {
             return new ResponseEntity<String>("Token is wrong", HttpStatus.BAD_REQUEST);
-        }
+        }*/
+        return new ResponseEntity<String>("Token is wrong", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("key")
@@ -62,7 +63,8 @@ public class RestAPI {
     @PostMapping("login")
     public ResponseEntity<String> login()
     {
-        String token = tokenInitialization();
-        return new ResponseEntity<String>(token, HttpStatus.OK);
+        //String token = tokenInitialization();
+        //return new ResponseEntity<String>(token, HttpStatus.OK);
+        return new ResponseEntity<String>("Token is wrong", HttpStatus.BAD_REQUEST);
     }
 }
