@@ -77,10 +77,9 @@ public class Function {
     }
     // Token for test
     // "A2qJwy11cV3ffM90qJ2H4g==.lEMNuOFXvdNsNfSF08JFIs8UWlQ64oHDQcIkHzPYsvTPi1sZzr4JO3+i4rdLN4wL.sIl3hJcDwUxvfis0Kw39aT8KoF7nNq3i3P5FJMyv9aDfxnTsEUoyF8vcjy8bi1WuNQR7ZgtS2SZ3+AIZJnFrmRMV2/cMamf7n8ufw9bLJJufNpsPAVMgznwpK+TB7fBMZttMlHrqjRdWxa2KaWsRtxHOZ+80S3cHkl3tNU/+GPU="
-    public static boolean tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
+    public static int tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
     {
-
-
+        // -1 error, 0 : expiration,  1 : true
 
         try {
             // Một token chia làm 3 đoạn phân tách bởi dấu .
@@ -124,20 +123,26 @@ public class Function {
                 String password = jsonPayloadDecrypt.get("password").toString();
                 if (username.equals("") || password.equals("")) // Kiểm tra username và password
                 {
-                    return false;
+                    return -1;
                 }
             }
             catch (JSONException e) // Có ngoại lệ thì trả về token không hợp lệ, ngoại lệ có thể là không tồn tại key trong json,...
             {
-                return false;
+                return -1;
             }
             //
 
             // Check for token expiration
             long longTokenExpirationTimeDecrypt = Long.parseLong(tokenExpirationTimeDecrypt);
             // Token is expired
-            return longTokenExpirationTimeDecrypt >= System.currentTimeMillis(); // Kiểm tra nếu token đã hết hạn
-            //
+            if (longTokenExpirationTimeDecrypt >= System.currentTimeMillis()) // Kiểm tra nếu token đã hết hạn
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
 
             //
 
@@ -145,7 +150,7 @@ public class Function {
         catch (Exception e)
         {
             System.out.println(e);
-            return false;
+            return -1;
         }
 
     }

@@ -30,7 +30,8 @@ public class RestAPI {
     public ResponseEntity<String> activeKey(@RequestParam("keyValue") String keyValue,
                                          @RequestParam("token") String token)
     {
-        if (tokenAuthentication(token))
+        int statusTokenAuthentication = tokenAuthentication(token);
+        if (statusTokenAuthentication == 1)
         {
             Key key = keyService.findKeyByValue(keyValue);
             if (key != null)
@@ -43,9 +44,13 @@ public class RestAPI {
             }
 
         }
+        else if (statusTokenAuthentication == 0)
+        {
+            return new ResponseEntity<String>("Token is expiration", HttpStatus.BAD_REQUEST);
+        }
         else
         {
-            return new ResponseEntity<String>("Token is wrong", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Error", HttpStatus.BAD_REQUEST);
         }
     }
 
