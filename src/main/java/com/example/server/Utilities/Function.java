@@ -80,14 +80,16 @@ public class Function {
     public static boolean tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
     {
 
-        // Một token chia làm 3 đoạn phân tách bởi dấu .
-        String[] parts = tokenValue.split("\\.");
 
-        String stringHeaderEncrypt = parts[0];
-        String stringJsonPayloadEncrypt  = parts[1];
-        String stringSignatureEncrypt = parts[2];
 
         try {
+            // Một token chia làm 3 đoạn phân tách bởi dấu .
+            String[] parts = tokenValue.split("\\.");
+
+            String stringHeaderEncrypt = parts[0];
+            String stringJsonPayloadEncrypt  = parts[1];
+            String stringSignatureEncrypt = parts[2];
+
             String SECRET_KEY = "traistorm-key-12"; // Key để giải mã aes
             SecretKeySpec sKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
             Cipher cipher = null;
