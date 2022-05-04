@@ -80,7 +80,7 @@ public class Function {
     public static int tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
     {
         // -1 error, 0 : login info is not correct, 1: expiration,  2 : true
-        String token = "A2qJwy11cV3ffM90qJ2H4g==.A2qJwy11cV3ffM90qJ2H4g==.sIl3hJcDwUxvfis0Kw39aR81c/15R3vt3Uzu36P0T/DgbFJmfrLK63g24O9AGZPbRNdAhAZrQtbi+t0xdCwahhpCz/ozTKLXc3ftVyb77EA=";
+        String token = "ey3uaEtOzo3aDQzESbn8/Q==.ey3uaEtOzo3aDQzESbn8/Q==.D3kEpVxYOF+vNbPcwB/3Z97n+kpwGjPOORYOdddkFEQUWy2Qe7Z5+zK+TyA1rtDR+r7u0r5lp1p1rcImLx+nZ3J5HoqNrgTmGPpfK93rMRc=";
         try {
             // Một token chia làm 3 đoạn phân tách bởi dấu .
             String[] parts = token.split("\\.");
