@@ -12,5 +12,6 @@ import javax.persistence.Table;
 public class Key {
     @Id
     private Integer id;
-    private String value;
+    private String value; //
+    private Long expiration; // Thời gian key hết hạn
 }
