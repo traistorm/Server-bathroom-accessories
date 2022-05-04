@@ -80,17 +80,17 @@ public class Function {
     public static int tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
     {
         // -1 error, 0 : login info is not correct, 1: expiration,  2 : true
-
+        String token = "A2qJwy11cV3ffM90qJ2H4g==.A2qJwy11cV3ffM90qJ2H4g==.sIl3hJcDwUxvfis0Kw39aR81c/15R3vt3Uzu36P0T/DgbFJmfrLK63g24O9AGZPbRNdAhAZrQtbi+t0xdCwahhpCz/ozTKLXc3ftVyb77EA=";
         try {
             // Một token chia làm 3 đoạn phân tách bởi dấu .
-            String[] parts = tokenValue.split("\\.");
+            String[] parts = token.split("\\.");
 
             String stringHeaderEncrypt = parts[0];
             String stringJsonPayloadEncrypt  = parts[1];
             String stringSignatureEncrypt = parts[2];
-            stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
-            stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
-            stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
+            //stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
+            //stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
+            //stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
 
             String SECRET_KEY = "traistorm-key-12"; // Key để giải mã aes
             SecretKeySpec sKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
