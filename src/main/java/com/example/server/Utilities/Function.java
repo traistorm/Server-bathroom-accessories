@@ -22,7 +22,7 @@ public class Function {
                 String SECRET_KEY = "traistorm-key-12"; // Tạo key
                 SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
                 Cipher cipher = null;
-                cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+                cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
                 cipher.init(Cipher.ENCRYPT_MODE, skeySpec); // Set ở chế độ mã hoá
 
                 JSONObject jsonHeader = new JSONObject(); // Json header
@@ -95,7 +95,7 @@ public class Function {
             String SECRET_KEY = "traistorm-key-12"; // Key để giải mã aes
             SecretKeySpec sKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
             Cipher cipher = null;
-            cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
             cipher.init(Cipher.DECRYPT_MODE, sKeySpec);
 
