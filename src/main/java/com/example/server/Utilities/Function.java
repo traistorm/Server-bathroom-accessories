@@ -140,8 +140,7 @@ public class Function {
             //
 
         }
-        catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException |
-               InvalidKeyException e)
+        catch (Exception e)
         {
             System.out.println(e);
             return false;
