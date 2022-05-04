@@ -96,7 +96,9 @@ public class Function {
 
             cipher.init(Cipher.DECRYPT_MODE, sKeySpec);
 
-            byte[] byteHeaderDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringHeaderEncrypt.getBytes()));// Giải mã đoạn một sẽ ra header
+            return 1;
+
+            /*byte[] byteHeaderDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringHeaderEncrypt.getBytes()));// Giải mã đoạn một sẽ ra header
             String stringHeaderDecrypt = new String(byteHeaderDecrypt);
 
             byte[] byteJsonPayloadDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringJsonPayloadEncrypt.getBytes())); // Giải mã đoạn 2 sẽ ra payload, chưa thông tin đăng nhập, vai trò, ...
@@ -116,7 +118,7 @@ public class Function {
             // Check jwt
 
             // Check for payload
-            /*try
+            try
             {
                 JSONObject jsonPayloadDecrypt = new JSONObject(stringJsonPayloadDecrypt); // Nhận Json từ string được giải mã
                 String username = jsonPayloadDecrypt.get("username").toString();
@@ -129,7 +131,7 @@ public class Function {
             catch (JSONException e) // Có ngoại lệ thì trả về token không hợp lệ, ngoại lệ có thể là không tồn tại key trong json,...
             {
                 return -1;
-            }*/
+            }
             //
 
             // Check for token expiration
@@ -143,6 +145,7 @@ public class Function {
             {
                 return 0;
             }
+            */
 
             //
 
