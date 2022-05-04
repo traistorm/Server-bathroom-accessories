@@ -26,7 +26,7 @@ public class RestAPI {
         return "Test";
     }
 
-    @PostMapping("activeKey/{keyValue}/{token}")
+    /*@PostMapping("activeKey/{keyValue}/{token}")
     public ResponseEntity<String> activeKey(@PathVariable("keyValue") String keyValue,
                                          @PathVariable("token") String token)
     {
@@ -64,5 +64,5 @@ public class RestAPI {
     {
         String token = tokenInitialization();
         return new ResponseEntity<String>(token, HttpStatus.OK);
-    }
+    }*/
 }
