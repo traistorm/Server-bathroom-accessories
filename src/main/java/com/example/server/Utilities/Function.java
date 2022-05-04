@@ -88,9 +88,9 @@ public class Function {
             String stringHeaderEncrypt = parts[0];
             String stringJsonPayloadEncrypt  = parts[1];
             String stringSignatureEncrypt = parts[2];
-            //stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
-            //stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
-            //stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
+            stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
+            stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
+            stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
 
             String SECRET_KEY = "traistorm-key-12"; // Key để giải mã aes
             SecretKeySpec sKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
