@@ -26,9 +26,9 @@ public class RestAPI {
         return "Test";
     }
 
-    @PostMapping("activeKey/{keyValue}/{token}")
-    public ResponseEntity<String> activeKey(@PathVariable("keyValue") String keyValue,
-                                         @PathVariable("token") String token)
+    @PostMapping("activeKey")
+    public ResponseEntity<String> activeKey(@RequestParam("keyValue") String keyValue,
+                                         @RequestParam("token") String token)
     {
         if (tokenAuthentication(token))
         {
