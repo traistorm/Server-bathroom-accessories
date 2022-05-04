@@ -79,7 +79,7 @@ public class Function {
     // "A2qJwy11cV3ffM90qJ2H4g==.lEMNuOFXvdNsNfSF08JFIs8UWlQ64oHDQcIkHzPYsvTPi1sZzr4JO3+i4rdLN4wL.sIl3hJcDwUxvfis0Kw39aT8KoF7nNq3i3P5FJMyv9aDfxnTsEUoyF8vcjy8bi1WuNQR7ZgtS2SZ3+AIZJnFrmRMV2/cMamf7n8ufw9bLJJufNpsPAVMgznwpK+TB7fBMZttMlHrqjRdWxa2KaWsRtxHOZ+80S3cHkl3tNU/+GPU="
     public static int tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
     {
-        // -1 error, 0 : expiration,  1 : true
+        // -1 error, 0 : login info is not correct, 1: expiration,  2 : true
 
         try {
             // Một token chia làm 3 đoạn phân tách bởi dấu .
@@ -88,9 +88,9 @@ public class Function {
             String stringHeaderEncrypt = parts[0];
             String stringJsonPayloadEncrypt  = parts[1];
             String stringSignatureEncrypt = parts[2];
-            stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
-            stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
-            stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
+            //stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
+            //stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
+            //stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
 
             String SECRET_KEY = "traistorm-key-12"; // Key để giải mã aes
             SecretKeySpec sKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
@@ -106,9 +106,8 @@ public class Function {
 
             byte[] byteJsonPayloadDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringJsonPayloadEncrypt.getBytes())); // Giải mã đoạn 2 sẽ ra payload, chưa thông tin đăng nhập, vai trò, ...
             String stringJsonPayloadDecrypt = new String(byteJsonPayloadDecrypt);
-            return 1;
 
-            /*byte[] byteSignatureEncrypt = cipher.doFinal(Base64.getDecoder().decode(stringSignatureEncrypt.getBytes())); // Giải mã đoạn 3 ra signature, là hợp của hai đoạn trên và thời gian tồn tại của token
+            byte[] byteSignatureEncrypt = cipher.doFinal(Base64.getDecoder().decode(stringSignatureEncrypt.getBytes())); // Giải mã đoạn 3 ra signature, là hợp của hai đoạn trên và thời gian tồn tại của token
             String stringSignatureDecrypt = new String(byteSignatureEncrypt);
 
             // Decrypt stringSignatureDecrypt we will get header + payload + token expiration time
@@ -129,7 +128,7 @@ public class Function {
                 String password = jsonPayloadDecrypt.get("password").toString();
                 if (username.equals("") || password.equals("")) // Kiểm tra username và password
                 {
-                    return -1;
+                    return 0;
                 }
             }
             catch (JSONException e) // Có ngoại lệ thì trả về token không hợp lệ, ngoại lệ có thể là không tồn tại key trong json,...
@@ -143,13 +142,13 @@ public class Function {
             // Token is expired
             if (longTokenExpirationTimeDecrypt >= System.currentTimeMillis()) // Kiểm tra nếu token đã hết hạn
             {
-                return 1;
+                return 2;
             }
             else
             {
-                return 0;
+                return 1;
             }
-            */
+
 
             //
 

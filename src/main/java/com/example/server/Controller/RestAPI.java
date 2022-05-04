@@ -31,7 +31,7 @@ public class RestAPI {
                                          @RequestParam("token") String token)
     {
         int statusTokenAuthentication = tokenAuthentication(token);
-        if (statusTokenAuthentication == 1)
+        if (statusTokenAuthentication == 2)
         {
             Key key = keyService.findKeyByValue(keyValue);
             if (key != null)
@@ -44,9 +44,13 @@ public class RestAPI {
             }
 
         }
-        else if (statusTokenAuthentication == 0)
+        else if (statusTokenAuthentication == 1)
         {
             return new ResponseEntity<String>("Token is expiration", HttpStatus.BAD_REQUEST);
+        }
+        else if (statusTokenAuthentication == 0)
+        {
+            return new ResponseEntity<String>("Login info is wrong", HttpStatus.BAD_REQUEST);
         }
         else
         {
