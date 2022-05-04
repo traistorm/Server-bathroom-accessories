@@ -100,15 +100,16 @@ public class Function {
 
             byte[] byteHeaderDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringHeaderEncrypt.getBytes()));// Giải mã đoạn một sẽ ra header
             String stringHeaderDecrypt = new String(byteHeaderDecrypt);
-            return 1;
 
-            /*byte[] byteJsonPayloadDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringJsonPayloadEncrypt.getBytes())); // Giải mã đoạn 2 sẽ ra payload, chưa thông tin đăng nhập, vai trò, ...
+
+            byte[] byteJsonPayloadDecrypt = cipher.doFinal(Base64.getDecoder().decode(stringJsonPayloadEncrypt.getBytes())); // Giải mã đoạn 2 sẽ ra payload, chưa thông tin đăng nhập, vai trò, ...
             String stringJsonPayloadDecrypt = new String(byteJsonPayloadDecrypt);
 
             byte[] byteSignatureEncrypt = cipher.doFinal(Base64.getDecoder().decode(stringSignatureEncrypt.getBytes())); // Giải mã đoạn 3 ra signature, là hợp của hai đoạn trên và thời gian tồn tại của token
             String stringSignatureDecrypt = new String(byteSignatureEncrypt);
+            return 1;
 
-            // Decrypt stringSignatureDecrypt we will get header + payload + token expiration time
+            /*// Decrypt stringSignatureDecrypt we will get header + payload + token expiration time
             String[] stringSignatureDecryptSpilt = stringSignatureDecrypt.split("\\.");
 
             String tokenExpirationTimeEncrypt = stringSignatureDecryptSpilt[2]; // Lấy phần 3 là thời gian tồn tại của token và giải mã
