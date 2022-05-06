@@ -77,6 +77,6 @@ public class RestAPI {
     @PostMapping("testToken")
     public String testToken(@RequestHeader (name="Authorization") String headerToken)
     {
-        return headerToken;
+        return tokenAuthentication(headerToken.substring(7, headerToken.length()));
     }
 }
