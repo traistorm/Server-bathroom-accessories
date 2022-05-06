@@ -5,9 +5,12 @@ import com.example.server.Entity.Student;
 import com.example.server.Repository.StudentRepository;
 import com.example.server.Service.KeyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static com.example.server.Utilities.Function.tokenAuthentication;
 import static com.example.server.Utilities.Function.tokenInitialization;
@@ -75,8 +78,10 @@ public class RestAPI {
         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
     @PostMapping("testToken")
-    public String testToken(@RequestHeader (name="Authorization") String headerToken)
+    //public String testToken(@RequestHeader (name="Authorization") String headerToken)
+    public String testToken(HttpServletRequest httpServletRequest)
     {
-        return tokenAuthentication(headerToken.substring(7, headerToken.length()));
+        return httpServletRequest.getParameter("Test");
+        //return tokenAuthentication(headerToken.substring(7, headerToken.length()));
     }
 }
