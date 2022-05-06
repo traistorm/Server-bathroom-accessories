@@ -88,7 +88,7 @@ public class Function {
             String stringHeaderEncrypt = parts[0];
             String stringJsonPayloadEncrypt  = parts[1];
             String stringSignatureEncrypt = parts[2];
-            return stringJsonPayloadEncrypt;
+            return stringSignatureEncrypt;
 
             /*stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
             stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
