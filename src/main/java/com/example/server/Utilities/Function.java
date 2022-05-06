@@ -2,6 +2,10 @@ package com.example.server.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -88,7 +92,11 @@ public class Function {
             String stringHeaderEncrypt = parts[0];
             String stringJsonPayloadEncrypt  = parts[1];
             String stringSignatureEncrypt = parts[2];
-            return stringSignatureEncrypt;
+
+            HttpHeaders headers = new HttpHeaders();
+            //((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
+
+            return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
 
             /*stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
             stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
