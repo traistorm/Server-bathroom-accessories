@@ -26,7 +26,7 @@ public class RestAPI {
         return "Test";
     }
 
-    @PostMapping("activeKey")
+    /*@PostMapping("activeKey")
     public ResponseEntity<String> activeKey(@RequestParam("keyValue") String keyValue,
                                          @RequestParam("token") String token)
     {
@@ -56,7 +56,7 @@ public class RestAPI {
         {
             return new ResponseEntity<String>("Error", HttpStatus.BAD_REQUEST);
         }
-    }
+    }*/
 
     @PostMapping("key")
     public ResponseEntity<Student> key(@RequestParam String token)
@@ -73,5 +73,10 @@ public class RestAPI {
     {
         String token = tokenInitialization();
         return new ResponseEntity<String>(token, HttpStatus.OK);
+    }
+    @PostMapping("testToken")
+    public String testToken(@RequestParam String token)
+    {
+        return tokenAuthentication(token);
     }
 }

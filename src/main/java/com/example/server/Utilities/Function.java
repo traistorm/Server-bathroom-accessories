@@ -22,7 +22,7 @@ public class Function {
                 String SECRET_KEY = "traistorm-key-12"; // Tạo key
                 SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
                 Cipher cipher = null;
-                cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+                cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
                 cipher.init(Cipher.ENCRYPT_MODE, skeySpec); // Set ở chế độ mã hoá
 
                 JSONObject jsonHeader = new JSONObject(); // Json header
@@ -77,25 +77,27 @@ public class Function {
     }
     // Token for test
     // "A2qJwy11cV3ffM90qJ2H4g==.lEMNuOFXvdNsNfSF08JFIs8UWlQ64oHDQcIkHzPYsvTPi1sZzr4JO3+i4rdLN4wL.sIl3hJcDwUxvfis0Kw39aT8KoF7nNq3i3P5FJMyv9aDfxnTsEUoyF8vcjy8bi1WuNQR7ZgtS2SZ3+AIZJnFrmRMV2/cMamf7n8ufw9bLJJufNpsPAVMgznwpK+TB7fBMZttMlHrqjRdWxa2KaWsRtxHOZ+80S3cHkl3tNU/+GPU="
-    public static int tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
+    public static String tokenAuthentication(String tokenValue) // Giải mã, ngược quá trình tạo token
     {
         // -1 error, 0 : login info is not correct, 1: expiration,  2 : true
-        String token = "ey3uaEtOzo3aDQzESbn8/Q==.ey3uaEtOzo3aDQzESbn8/Q==.D3kEpVxYOF+vNbPcwB/3Z97n+kpwGjPOORYOdddkFEQUWy2Qe7Z5+zK+TyA1rtDR+r7u0r5lp1p1rcImLx+nZ3J5HoqNrgTmGPpfK93rMRc=";
         try {
             // Một token chia làm 3 đoạn phân tách bởi dấu .
-            String[] parts = token.split("\\.");
+            String[] parts = tokenValue
+                    .split("\\.");
 
             String stringHeaderEncrypt = parts[0];
             String stringJsonPayloadEncrypt  = parts[1];
             String stringSignatureEncrypt = parts[2];
-            //stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
-            //stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
-            //stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
+            return stringHeaderEncrypt;
+
+            /*stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
+            stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
+            stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
 
             String SECRET_KEY = "traistorm-key-12"; // Key để giải mã aes
             SecretKeySpec sKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
             Cipher cipher = null;
-            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
 
             cipher.init(Cipher.DECRYPT_MODE, sKeySpec);
 
@@ -128,12 +130,12 @@ public class Function {
                 String password = jsonPayloadDecrypt.get("password").toString();
                 if (username.equals("") || password.equals("")) // Kiểm tra username và password
                 {
-                    return 0;
+                    return "0";
                 }
             }
             catch (JSONException e) // Có ngoại lệ thì trả về token không hợp lệ, ngoại lệ có thể là không tồn tại key trong json,...
             {
-                return -1;
+                return "-1";
             }
             //
 
@@ -142,21 +144,21 @@ public class Function {
             // Token is expired
             if (longTokenExpirationTimeDecrypt >= System.currentTimeMillis()) // Kiểm tra nếu token đã hết hạn
             {
-                return 2;
+                return "2";
             }
             else
             {
-                return 1;
+                return "1";
             }
 
 
-            //
+            //*/
 
         }
         catch (Exception e)
         {
             System.out.println(e);
-            return -1;
+            return "-1";
         }
 
     }
