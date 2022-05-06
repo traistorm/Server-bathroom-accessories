@@ -96,9 +96,8 @@ public class Function {
             HttpHeaders headers = new HttpHeaders();
             //((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
 
-            return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
 
-            /*stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
+            stringHeaderEncrypt = stringHeaderEncrypt.replaceAll("\\s+","");
             stringJsonPayloadEncrypt = stringJsonPayloadEncrypt.replaceAll("\\s+","");
             stringSignatureEncrypt = stringSignatureEncrypt.replaceAll("\\s+","");
 
@@ -159,8 +158,6 @@ public class Function {
                 return "1";
             }
 
-
-            //*/
 
         }
         catch (Exception e)
