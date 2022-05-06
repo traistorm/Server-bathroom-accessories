@@ -79,9 +79,10 @@ public class RestAPI {
     }
     @PostMapping("testToken")
     //public String testToken(@RequestHeader (name="Authorization") String headerToken)
-    public String testToken(HttpServletRequest httpServletRequest)
+    public String testToken(@RequestParam(name = "token", required = false) String token)
     {
-        return httpServletRequest.getParameter("Test");
+        token = token.replaceAll(" ", "+");
+        return token;
         //return tokenAuthentication(headerToken.substring(7, headerToken.length()));
     }
 }
