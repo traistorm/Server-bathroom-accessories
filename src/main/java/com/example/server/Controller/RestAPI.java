@@ -82,7 +82,7 @@ public class RestAPI {
     public String testToken(@RequestParam(name = "token", required = false) String token)
     {
         token = token.replaceAll(" ", "+");
-        return token;
+        return tokenAuthentication(token);
         //return tokenAuthentication(headerToken.substring(7, headerToken.length()));
     }
 }
