@@ -24,16 +24,12 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    public JSONObject checkKey()
+    public ResponseEntity<Student> checkKey()
     {
-        String json = "{\n" +
-                "  \"items\": [\n" +
-                "    { \"id\": 1, \"name\": \"Apples\",  \"price\": \"$2\" },\n" +
-                "    { \"id\": 2, \"name\": \"Peaches\", \"price\": \"$5\" }\n" +
-                "  ] \n" +
-                "}";
-        JSONObject jsonObject = new JSONObject(json);
-        return jsonObject;
+        Student student = new Student();
+        student.setName("Cuong");
+        student.setId(20182395);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     /*@PostMapping("activeKey")
