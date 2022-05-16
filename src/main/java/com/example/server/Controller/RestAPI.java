@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.server.Utilities.Function.tokenAuthentication;
 import static com.example.server.Utilities.Function.tokenInitialization;
 
@@ -24,12 +27,15 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    public ResponseEntity<Student> checkKey()
+    @ResponseBody
+    public Student checkKey()
     {
+        List<Student> studentList = new ArrayList<>();
         Student student = new Student();
         student.setName("Cuong");
         student.setId(20182395);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+        studentList.add(student);
+        return student;
     }
 
     /*@PostMapping("activeKey")
