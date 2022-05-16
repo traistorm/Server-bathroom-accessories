@@ -28,14 +28,14 @@ public class RestAPI {
     KeyService keyService;
     @RequestMapping("/CheckKey")
     @ResponseBody
-    public Student checkKey()
+    public String checkKey()
     {
         List<Student> studentList = new ArrayList<>();
         Student student = new Student();
         student.setName("Cuong");
         student.setId(20182395);
         studentList.add(student);
-        return student;
+        return "{\"id\":20182395,\"name\":\"Cuong\"}";
     }
 
     /*@PostMapping("activeKey")
