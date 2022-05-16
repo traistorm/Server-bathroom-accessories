@@ -30,13 +30,14 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    public JSONObject checkKey()
+    @ResponseBody
+    public Student checkKey()
     {
         Student student = new Student();
         student.setId(2222);
         student.setName("Cuong");
         String jsonInString = new Gson().toJson(student);
-        return new JSONObject(jsonInString);
+        return student;
     }
 
     /*@PostMapping("activeKey")
