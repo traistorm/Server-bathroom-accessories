@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.server.Utilities.Function.tokenAuthentication;
 import static com.example.server.Utilities.Function.tokenInitialization;
@@ -28,14 +30,18 @@ public class RestAPI {
     KeyService keyService;
     @RequestMapping("/CheckKey")
     @ResponseBody
-    public ResponseEntity<Student> checkKey()
+    public Map<String,?> checkKey()
     {
         List<Student> studentList = new ArrayList<>();
         Student student = new Student();
         student.setName("Cuong");
         student.setId(20182395);
-        studentList.add(student);
-        return ResponseEntity.ok(student);
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("status", "test");
+        map.put("message", "Data is found");
+        map.put("data", "test");
+        return map;
     }
 
     /*@PostMapping("activeKey")
