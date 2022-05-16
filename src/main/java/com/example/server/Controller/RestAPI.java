@@ -4,6 +4,7 @@ import com.example.server.Entity.Key;
 import com.example.server.Entity.Student;
 import com.example.server.Repository.StudentRepository;
 import com.example.server.Service.KeyService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    public String checkKey()
+    public JSONObject checkKey()
     {
         String json = "{\n" +
                 "  \"items\": [\n" +
@@ -31,7 +32,8 @@ public class RestAPI {
                 "    { \"id\": 2, \"name\": \"Peaches\", \"price\": \"$5\" }\n" +
                 "  ] \n" +
                 "}";
-        return json;
+        JSONObject jsonObject = new JSONObject(json);
+        return jsonObject;
     }
 
     /*@PostMapping("activeKey")
