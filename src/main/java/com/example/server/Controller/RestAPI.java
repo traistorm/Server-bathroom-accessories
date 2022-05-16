@@ -27,14 +27,14 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    public ResponseEntity<String> checkKey()
+    public ResponseEntity<List<Student>> checkKey()
     {
         List<Student> studentList = new ArrayList<>();
         Student student = new Student();
         student.setName("Cuong");
         student.setId(20182395);
         studentList.add(student);
-        return new ResponseEntity<>("\"{\"id\":20182395,\"name\":\"Cuong\"}\"", HttpStatus.OK);
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
     /*@PostMapping("activeKey")
