@@ -35,7 +35,7 @@ public class RestAPI {
         student.setName("Cuong");
         student.setId(20182395);
         studentList.add(student);
-        return "{\"id\":20182395,\"name\":\"Cuong\"}";
+        return "\"{\"id\":20182395,\"name\":\"Cuong\"}\"";
     }
 
     /*@PostMapping("activeKey")
