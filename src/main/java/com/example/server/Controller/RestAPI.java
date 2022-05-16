@@ -4,6 +4,7 @@ import com.example.server.Entity.Key;
 import com.example.server.Entity.Student;
 import com.example.server.Repository.StudentRepository;
 import com.example.server.Service.KeyService;
+import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -29,18 +30,13 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    public Map<String,?> checkKey()
+    public JSONObject checkKey()
     {
-        List<Student> studentList = new ArrayList<>();
         Student student = new Student();
+        student.setId(2222);
         student.setName("Cuong");
-        student.setId(20182395);
-
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("status", "test");
-        map.put("message", "Data is found");
-        map.put("data", "test");
-        return map;
+        String jsonInString = new Gson().toJson(student);
+        return new JSONObject(jsonInString);
     }
 
     /*@PostMapping("activeKey")
