@@ -25,8 +25,13 @@ public class RestAPI {
     @RequestMapping("/CheckKey")
     public String checkKey()
     {
-
-        return "Test";
+        String json = "{\n" +
+                "  \"items\": [\n" +
+                "    { \"id\": 1, \"name\": \"Apples\",  \"price\": \"$2\" },\n" +
+                "    { \"id\": 2, \"name\": \"Peaches\", \"price\": \"$5\" }\n" +
+                "  ] \n" +
+                "}";
+        return json;
     }
 
     /*@PostMapping("activeKey")
