@@ -29,7 +29,6 @@ public class RestAPI {
     @Autowired
     KeyService keyService;
     @RequestMapping("/CheckKey")
-    @ResponseBody
     public Map<String,?> checkKey()
     {
         List<Student> studentList = new ArrayList<>();
