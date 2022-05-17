@@ -22,7 +22,7 @@ import java.util.Map;
 import static com.example.server.Utilities.Function.tokenAuthentication;
 import static com.example.server.Utilities.Function.tokenInitialization;
 
-@CrossOrigin(origins = "https://server-spring-boot-api.herokuapp.com")
+@CrossOrigin(origins = "https://server-spring-boot-api.herokuapp.com/")
 @RestController
 @RequestMapping("/api")
 public class RestAPI {
