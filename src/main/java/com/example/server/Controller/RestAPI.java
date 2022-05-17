@@ -32,13 +32,15 @@ public class RestAPI {
     KeyService keyService;
     @RequestMapping("/CheckKey")
     @ResponseBody
-    public Student checkKey()
+    public List<Student> checkKey()
     {
+        List<Student> studentList = new ArrayList<>();
         Student student = new Student();
         student.setId(2222);
         student.setName("Cuong");
-        String jsonInString = new Gson().toJson(student);
-        return student;
+        studentList.add(student);
+        studentList.add(student);
+        return studentList;
     }
 
     /*@PostMapping("activeKey")
