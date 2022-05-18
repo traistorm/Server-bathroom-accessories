@@ -30,7 +30,7 @@ public class RestAPI {
     StudentRepository studentRepository;
     @Autowired
     KeyService keyService;
-    @CrossOrigin(origins = "http://localhost:3000")
+    //@CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/CheckKey")
     @ResponseBody
     public List<Student> checkKey()
