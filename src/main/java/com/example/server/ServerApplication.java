@@ -17,7 +17,7 @@ public class ServerApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/checkKey").allowedOrigins("http://localhost:3000/tin-tuc");
+                registry.addMapping("/api/checkKey").allowedOrigins("http://localhost:3000");
             }
         };
     }
