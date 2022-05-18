@@ -22,7 +22,7 @@ import java.util.Map;
 import static com.example.server.Utilities.Function.tokenAuthentication;
 import static com.example.server.Utilities.Function.tokenInitialization;
 
-@CrossOrigin(origins = "https://server-spring-boot-api.herokuapp.com/")
+
 @RestController
 @RequestMapping("/api")
 public class RestAPI {
@@ -30,6 +30,7 @@ public class RestAPI {
     StudentRepository studentRepository;
     @Autowired
     KeyService keyService;
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/CheckKey")
     @ResponseBody
     public List<Student> checkKey()
