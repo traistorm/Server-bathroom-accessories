@@ -28,7 +28,7 @@ import static com.example.server.Utilities.Function.tokenInitialization;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class RestAPI {
     @Autowired
     StudentRepository studentRepository;
@@ -109,7 +109,7 @@ public class RestAPI {
 
     // API for Bathroom Accessories
 
-    @GetMapping("/v1/bathroomaccessories")
+    @GetMapping("/bathroomaccessories")
     @ResponseBody
     public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
     {
@@ -124,7 +124,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping("/v1/bathroomaccessories/{id}")
+    @GetMapping("/bathroomaccessories/{id}")
     @ResponseBody
     public ResponseEntity<BathroomAccessories> findBathroomAccessoriesById(@PathVariable("id") Integer id) // Lấy một sản phẩm bằng id
     {
@@ -141,7 +141,7 @@ public class RestAPI {
     //
 
     // Api for Coat Hanger
-    @GetMapping("/v1/coathanger")
+    @GetMapping("/coathanger")
     @ResponseBody
     public ResponseEntity<List<CoatHanger>> findAllCoatHanger() // Lấy danh sách tất cả các loại mắc áo
     {
@@ -156,7 +156,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping("/v1/coathanger/{id}")
+    @GetMapping("/coathanger/{id}")
     @ResponseBody
     public ResponseEntity<CoatHanger> findCoatHangerById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
     {
