@@ -83,7 +83,7 @@ public class RestAPI {
         }
     }*/
 
-    @PostMapping("key")
+    @PostMapping("key1")
     public ResponseEntity<Student> key(@RequestParam String token) {
         System.out.println(token);
         Student student = new Student();
