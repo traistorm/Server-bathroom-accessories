@@ -1,9 +1,11 @@
 package com.example.server.Controller;
 
 import com.example.server.Entity.BathroomAccessories;
+import com.example.server.Entity.CoatHanger;
 import com.example.server.Entity.Key;
 import com.example.server.Entity.Student;
 import com.example.server.Repository.BathroomAccessoriesRepository;
+import com.example.server.Repository.CoatHangerRepository;
 import com.example.server.Repository.StudentRepository;
 import com.example.server.Service.KeyService;
 import com.google.gson.Gson;
@@ -34,7 +36,8 @@ public class RestAPI {
     KeyService keyService;
     @Autowired
     BathroomAccessoriesRepository bathroomAccessoriesRepository;
-
+    @Autowired
+    CoatHangerRepository coatHangerRepository;
     //@CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/CheckKey")
     @ResponseBody
@@ -106,7 +109,7 @@ public class RestAPI {
 
     // API for Bathroom Accessories
 
-    @GetMapping("v1/bathroomAccessories")
+    @GetMapping("v1/bathroomaccessories")
     @ResponseBody
     public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
     {
@@ -121,7 +124,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping("v1/bathroomAccessories/{id}")
+    @GetMapping("v1/bathroomaccessories/{id}")
     @ResponseBody
     public ResponseEntity<BathroomAccessories> findBathroomAccessoriesById(@PathVariable("id") Integer id) // Lấy một sản phẩm bằng id
     {
@@ -137,5 +140,35 @@ public class RestAPI {
     }
     //
 
+    // Api for Coat Hanger
+    @GetMapping("v1/coathanger")
+    @ResponseBody
+    public ResponseEntity<List<CoatHanger>> findAllCoatHanger() // Lấy danh sách tất cả các loại mắc áo
+    {
+        List<CoatHanger> coatHangerList = coatHangerRepository.findAll();
+        if (coatHangerList.size() > 0)
+        {
+            return new ResponseEntity<>(coatHangerList, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
+    @GetMapping("v1/coathanger/{id}")
+    @ResponseBody
+    public ResponseEntity<CoatHanger> findCoatHangerById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
+    {
+        CoatHanger coatHanger = coatHangerRepository.findCoatHangerById(id);
+        if (coatHanger != null)
+        {
+            return new ResponseEntity<>(coatHanger, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    //
 }
