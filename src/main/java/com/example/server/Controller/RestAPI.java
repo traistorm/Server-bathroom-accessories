@@ -1,7 +1,9 @@
 package com.example.server.Controller;
 
+import com.example.server.Entity.BathroomAccessories;
 import com.example.server.Entity.Key;
 import com.example.server.Entity.Student;
+import com.example.server.Repository.BathroomAccessoriesRepository;
 import com.example.server.Repository.StudentRepository;
 import com.example.server.Service.KeyService;
 import com.google.gson.Gson;
@@ -30,11 +32,13 @@ public class RestAPI {
     StudentRepository studentRepository;
     @Autowired
     KeyService keyService;
+    @Autowired
+    BathroomAccessoriesRepository bathroomAccessoriesRepository;
+
     //@CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/CheckKey")
     @ResponseBody
-    public List<Student> checkKey()
-    {
+    public List<Student> checkKey() {
         List<Student> studentList = new ArrayList<>();
         Student student = new Student();
         student.setId(2222);
@@ -77,8 +81,7 @@ public class RestAPI {
     }*/
 
     @PostMapping("key")
-    public ResponseEntity<Student> key(@RequestParam String token)
-    {
+    public ResponseEntity<Student> key(@RequestParam String token) {
         System.out.println(token);
         Student student = new Student();
         student.setId(0);
@@ -86,18 +89,53 @@ public class RestAPI {
         studentRepository.save(student);
         return new ResponseEntity<Student>(student, HttpStatus.OK);
     }
+
     @PostMapping("login")
-    public ResponseEntity<String> login()
-    {
+    public ResponseEntity<String> login() {
         String token = tokenInitialization();
         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
+
     @PostMapping("testToken")
     //public String testToken(@RequestHeader (name="Authorization") String headerToken)
-    public String testToken(@RequestParam(name = "token", required = false) String token)
-    {
+    public String testToken(@RequestParam(name = "token", required = false) String token) {
         token = token.replaceAll(" ", "+");
         return tokenAuthentication(token);
         //return tokenAuthentication(headerToken.substring(7, headerToken.length()));
     }
+
+    // API for Bathroom Accessories
+
+    @GetMapping("v1/bathroomAccessories")
+    @ResponseBody
+    public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
+    {
+        List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesRepository.findAll();
+        if (bathroomAccessoriesList.size() > 0)
+        {
+            return new ResponseEntity<>(bathroomAccessoriesList, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("v1/bathroomAccessories/{id}")
+    @ResponseBody
+    public ResponseEntity<BathroomAccessories> findBathroomAccessoriesById(@PathVariable("id") Integer id) // Lấy một sản phẩm bằng id
+    {
+        BathroomAccessories bathroomAccessories = bathroomAccessoriesRepository.findBathroomAccessoriesById(id);
+        if (bathroomAccessories != null)
+        {
+            return new ResponseEntity<>(bathroomAccessories, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    //
+
+
 }
