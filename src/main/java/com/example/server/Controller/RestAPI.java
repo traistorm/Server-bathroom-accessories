@@ -111,9 +111,9 @@ public class RestAPI {
 
     @GetMapping("/bathroomaccessories")
     @ResponseBody
-    public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
+    public ResponseEntity<String> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
     {
-        List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesRepository.findAll();
+        /*List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesRepository.findAll();
         if (bathroomAccessoriesList.size() > 0)
         {
             return new ResponseEntity<>(bathroomAccessoriesList, HttpStatus.OK);
@@ -121,7 +121,8 @@ public class RestAPI {
         else
         {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        }*/
+        return new ResponseEntity<>("Test", HttpStatus.OK);
     }
 
     @GetMapping("/bathroomaccessories/{id}")
