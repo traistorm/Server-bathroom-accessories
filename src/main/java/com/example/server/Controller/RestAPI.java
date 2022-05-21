@@ -1,13 +1,11 @@
 package com.example.server.Controller;
 
-import com.example.server.Entity.BathroomAccessories;
-import com.example.server.Entity.CoatHanger;
-import com.example.server.Entity.Key;
-import com.example.server.Entity.Student;
+import com.example.server.Entity.*;
 import com.example.server.Repository.BathroomAccessoriesRepository;
 import com.example.server.Repository.CoatHangerRepository;
+import com.example.server.Repository.NewsRepository;
 import com.example.server.Repository.StudentRepository;
-import com.example.server.Service.KeyService;
+import com.example.server.Service.*;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +29,15 @@ import static com.example.server.Utilities.Function.tokenInitialization;
 @RequestMapping("/api/v1")
 public class RestAPI {
     @Autowired
-    StudentRepository studentRepository;
+    StudentService studentService;
     @Autowired
     KeyService keyService;
     @Autowired
-    BathroomAccessoriesRepository bathroomAccessoriesRepository;
+    BathroomAccessoriesService bathroomAccessoriesService;
     @Autowired
-    CoatHangerRepository coatHangerRepository;
+    CoatHangerService coatHangerService;
+    @Autowired
+    NewsService newsService;
     //@CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/CheckKey")
     @ResponseBody
@@ -89,7 +89,7 @@ public class RestAPI {
         Student student = new Student();
         student.setId(0);
         student.setName(token);
-        studentRepository.save(student);
+        //studentService.save(student);
         return new ResponseEntity<Student>(student, HttpStatus.OK);
     }
 
@@ -113,7 +113,7 @@ public class RestAPI {
     @ResponseBody
     public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
     {
-        List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesRepository.findAll();
+        List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesService.findAll();
         if (bathroomAccessoriesList.size() > 0)
         {
             return new ResponseEntity<>(bathroomAccessoriesList, HttpStatus.OK);
@@ -128,7 +128,7 @@ public class RestAPI {
     @ResponseBody
     public ResponseEntity<BathroomAccessories> findBathroomAccessoriesById(@PathVariable("id") Integer id) // Lấy một sản phẩm bằng id
     {
-        BathroomAccessories bathroomAccessories = bathroomAccessoriesRepository.findBathroomAccessoriesById(id);
+        BathroomAccessories bathroomAccessories = bathroomAccessoriesService.findBathroomAccessoriesById(id);
         if (bathroomAccessories != null)
         {
             return new ResponseEntity<>(bathroomAccessories, HttpStatus.OK);
@@ -145,7 +145,7 @@ public class RestAPI {
     @ResponseBody
     public ResponseEntity<List<CoatHanger>> findAllCoatHanger() // Lấy danh sách tất cả các loại mắc áo
     {
-        List<CoatHanger> coatHangerList = coatHangerRepository.findAll();
+        List<CoatHanger> coatHangerList = coatHangerService.findAll();
         if (coatHangerList.size() > 0)
         {
             return new ResponseEntity<>(coatHangerList, HttpStatus.OK);
@@ -160,10 +160,42 @@ public class RestAPI {
     @ResponseBody
     public ResponseEntity<CoatHanger> findCoatHangerById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
     {
-        CoatHanger coatHanger = coatHangerRepository.findCoatHangerById(id);
+        CoatHanger coatHanger = coatHangerService.findCoatHangerById(id);
         if (coatHanger != null)
         {
             return new ResponseEntity<>(coatHanger, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    //
+
+    // Api for News
+    @GetMapping("/news")
+    @ResponseBody
+    public ResponseEntity<List<News>> findAllNews() // Lấy danh sách tất cả các loại mắc áo
+    {
+        List<News> newsList = newsService.findAll();
+        if (newsList.size() > 0)
+        {
+            return new ResponseEntity<>(newsList, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/news/{id}")
+    @ResponseBody
+    public ResponseEntity<News> findNewsById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
+    {
+        News news = newsService.findNewsById(id);
+        if (news != null)
+        {
+            return new ResponseEntity<>(news, HttpStatus.OK);
         }
         else
         {

@@ -13,4 +13,12 @@ public class CoatHanger {
     @Id
     private Integer id;
     private String name;
+    private Integer newprice;
+    private Integer oldprice;
+    private String status;
+    private String origin;
+    private String productcode;
+    private String imagelink;
+    private String brand;
+    private String insurance;
 }
