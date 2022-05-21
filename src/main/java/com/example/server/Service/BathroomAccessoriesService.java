@@ -20,6 +20,10 @@ public class BathroomAccessoriesService {
     public List<BathroomAccessories> finAllInPage(Integer page, Integer itemsPerPage)
     {
         List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesRepository.findAll();
+        if ((page - 1) * itemsPerPage + itemsPerPage > bathroomAccessoriesList.size())
+        {
+            return bathroomAccessoriesList.subList((page - 1) * itemsPerPage, bathroomAccessoriesList.size());
+        }
         return bathroomAccessoriesList.subList((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     }
     public BathroomAccessories findBathroomAccessoriesById(Integer id)
