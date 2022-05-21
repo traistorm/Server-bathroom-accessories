@@ -109,7 +109,7 @@ public class RestAPI {
 
     // API for Bathroom Accessories
 
-    @GetMapping(value = "/bathroomaccessories", produces = "text/plain;charset=UTF-8")
+    @GetMapping("/bathroomaccessories")
     @ResponseBody
     public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
     {
@@ -124,7 +124,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping(value = "/bathroomaccessories/{id}", produces = "text/plain;charset=UTF-8")
+    @GetMapping("/bathroomaccessories/{id}")
     @ResponseBody
     public ResponseEntity<BathroomAccessories> findBathroomAccessoriesById(@PathVariable("id") Integer id) // Lấy một sản phẩm bằng id
     {
@@ -141,7 +141,7 @@ public class RestAPI {
     //
 
     // Api for Coat Hanger
-    @GetMapping(value = "/coathanger", produces = "text/plain;charset=UTF-8")
+    @GetMapping("/coathanger")
     @ResponseBody
     public ResponseEntity<List<CoatHanger>> findAllCoatHanger() // Lấy danh sách tất cả các loại mắc áo
     {
@@ -156,7 +156,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping(value = "/coathanger/{id}", produces = "text/plain;charset=UTF-8")
+    @GetMapping("/coathanger/{id}")
     @ResponseBody
     public ResponseEntity<CoatHanger> findCoatHangerById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
     {
@@ -173,7 +173,7 @@ public class RestAPI {
     //
 
     // Api for News
-    @GetMapping(value = "/news", produces = "text/plain;charset=UTF-8")
+    @GetMapping("/news")
     @ResponseBody
     public ResponseEntity<List<News>> findAllNews() // Lấy danh sách tất cả các loại mắc áo
     {
@@ -188,7 +188,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping(value = "/news/{id}", produces = "text/plain;charset=UTF-8")
+    @GetMapping("/news/{id}")
     @ResponseBody
     public ResponseEntity<News> findNewsById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
     {
