@@ -111,17 +111,26 @@ public class RestAPI {
 
     @GetMapping("/bathroomaccessories")
     @ResponseBody
-    public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories() // Lấy danh sách tất cả các sản phẩm
+    public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories(@RequestParam(name = "page") Integer page,
+                                                                                @RequestParam(name = "itemsperpage") Integer itemsperpgae) // Lấy danh sách tất cả các sản phẩm
     {
-        List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesService.findAll();
-        if (bathroomAccessoriesList.size() > 0)
+        if (page != null && itemsperpgae != null)
         {
-            return new ResponseEntity<>(bathroomAccessoriesList, HttpStatus.OK);
+            return new ResponseEntity<>(bathroomAccessoriesService.finAllInPage(page, itemsperpgae), HttpStatus.OK);
         }
         else
         {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesService.findAll();
+            if (bathroomAccessoriesList.size() > 0)
+            {
+                return new ResponseEntity<>(bathroomAccessoriesList, HttpStatus.OK);
+            }
+            else
+            {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
+
     }
 
     @GetMapping("/bathroomaccessories/{id}")

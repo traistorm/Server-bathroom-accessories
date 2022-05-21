@@ -3,6 +3,7 @@ package com.example.server.Service;
 import com.example.server.Entity.BathroomAccessories;
 import com.example.server.Repository.BathroomAccessoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,11 @@ public class BathroomAccessoriesService {
     public List<BathroomAccessories> findAll()
     {
         return bathroomAccessoriesRepository.findAll();
+    }
+    public List<BathroomAccessories> finAllInPage(Integer page, Integer itemsPerPage)
+    {
+        List<BathroomAccessories> bathroomAccessoriesList = bathroomAccessoriesRepository.findAll();
+        return bathroomAccessoriesList.subList((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     }
     public BathroomAccessories findBathroomAccessoriesById(Integer id)
     {
