@@ -111,8 +111,8 @@ public class RestAPI {
 
     @GetMapping("/bathroomaccessories")
     @ResponseBody
-    public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories(@RequestParam(name = "page") Integer page,
-                                                                                @RequestParam(name = "itemsperpage") Integer itemsperpgae) // Lấy danh sách tất cả các sản phẩm
+    public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories(@RequestParam(name = "page", required = false) Integer page,
+                                                                                @RequestParam(name = "itemsperpage", required = false) Integer itemsperpgae) // Lấy danh sách tất cả các sản phẩm
     {
         if (page != null && itemsperpgae != null)
         {
