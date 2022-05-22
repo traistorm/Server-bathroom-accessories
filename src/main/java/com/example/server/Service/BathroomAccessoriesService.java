@@ -26,6 +26,10 @@ public class BathroomAccessoriesService {
         }
         return bathroomAccessoriesList.subList((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     }
+    public BathroomAccessories findBathroomAccessoriesById(Integer id)
+    {
+        return  bathroomAccessoriesRepository.findBathroomAccessoriesById(id);
+    }
     public List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetween(Integer minRange, Integer maxRange)
     {
         return bathroomAccessoriesRepository.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);

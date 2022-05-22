@@ -117,7 +117,7 @@ public class RestAPI {
                                                                                 @RequestParam(name = "maxRange", required = false) Integer maxRange,
                                                                                 @RequestParam(name = "sortType", required = false) String sortType) // Lấy danh sách tất cả các sản phẩm
     {
-        if (page != null && itemsperpgae != null)
+        if (page != null && itemsperpgae != null && minRange != null && maxRange != null)
         {
             return new ResponseEntity<>(bathroomAccessoriesService.finAllInPage(page, itemsperpgae), HttpStatus.OK);
         }
@@ -161,6 +161,7 @@ public class RestAPI {
         }
 
 
+        return null;
     }
 
     @GetMapping("/bathroomaccessories/{id}")
