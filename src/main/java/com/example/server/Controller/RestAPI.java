@@ -129,22 +129,22 @@ public class RestAPI {
             {
                 switch (sortType) {
                     case "priceIncrease":
-                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange);
-                        break;
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange), HttpStatus.OK);
+                        
                     case "priceDecrease":
-                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange);
-                        break;
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange), HttpStatus.OK);
+
                     case "mostView":
-                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange);
-                        break;
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange), HttpStatus.OK);
+
                     default:
-                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);
-                        break;
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange), HttpStatus.OK);
+
                 }
             }
             else
             {
-                bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);
+                return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange), HttpStatus.OK);
             }
         }
         else
@@ -161,7 +161,7 @@ public class RestAPI {
         }
 
 
-        return null;
+        //return null;
     }
 
     @GetMapping("/bathroomaccessories/{id}")
