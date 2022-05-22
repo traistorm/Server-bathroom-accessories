@@ -121,7 +121,7 @@ public class RestAPI {
         {
             return new ResponseEntity<>(bathroomAccessoriesService.finAllInPage(page, itemsperpgae), HttpStatus.OK);
         }
-        else if (minRange != null && maxRange != null)
+        else if (page != null && itemsperpgae != null && minRange != null && maxRange != null)
         {
             // We will chekc sort Type :
             // price increase, price decrease and most viewed;
@@ -129,22 +129,22 @@ public class RestAPI {
             {
                 switch (sortType) {
                     case "priceIncrease":
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
 
                     case "priceDecrease":
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
 
                     case "mostView":
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
 
                     default:
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
 
                 }
             }
             else
             {
-                return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange), HttpStatus.OK);
+                return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
             }
         }
         else
