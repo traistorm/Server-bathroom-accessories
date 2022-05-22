@@ -11,5 +11,8 @@ import java.util.List;
 public interface BathroomAccessoriesRepository extends JpaRepository<BathroomAccessories, Integer>
 {
     BathroomAccessories findBathroomAccessoriesById(Integer id);
+    List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetween(Integer minRange, Integer maxRange);
+    List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(Integer minRange, Integer maxRange);
+    List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(Integer minRange, Integer maxRange);
 }
 

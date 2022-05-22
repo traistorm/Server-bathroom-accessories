@@ -112,11 +112,40 @@ public class RestAPI {
     @GetMapping("/bathroomaccessories")
     @ResponseBody
     public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories(@RequestParam(name = "page", required = false) Integer page,
-                                                                                @RequestParam(name = "itemsperpage", required = false) Integer itemsperpgae) // Lấy danh sách tất cả các sản phẩm
+                                                                                @RequestParam(name = "itemsperpage", required = false) Integer itemsperpgae,
+                                                                                @RequestParam(name = "minRange", required = false) Integer minRange,
+                                                                                @RequestParam(name = "maxRange", required = false) Integer maxRange,
+                                                                                @RequestParam(name = "sortType", required = false) String sortType) // Lấy danh sách tất cả các sản phẩm
     {
         if (page != null && itemsperpgae != null)
         {
             return new ResponseEntity<>(bathroomAccessoriesService.finAllInPage(page, itemsperpgae), HttpStatus.OK);
+        }
+        else if (minRange != null && maxRange != null)
+        {
+            // We will chekc sort Type :
+            // price increase, price decrease and most viewed;
+            if (sortType != null)
+            {
+                switch (sortType) {
+                    case "priceIncrease":
+                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange);
+                        break;
+                    case "priceDecrease":
+                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange);
+                        break;
+                    case "mostView":
+                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange);
+                        break;
+                    default:
+                        bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);
+                        break;
+                }
+            }
+            else
+            {
+                bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);
+            }
         }
         else
         {
@@ -130,6 +159,7 @@ public class RestAPI {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
+
 
     }
 

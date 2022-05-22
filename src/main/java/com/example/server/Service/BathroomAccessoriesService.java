@@ -26,8 +26,20 @@ public class BathroomAccessoriesService {
         }
         return bathroomAccessoriesList.subList((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     }
-    public BathroomAccessories findBathroomAccessoriesById(Integer id)
+    public List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetween(Integer minRange, Integer maxRange)
     {
-        return bathroomAccessoriesRepository.findBathroomAccessoriesById(id);
+        return bathroomAccessoriesRepository.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);
+    }
+    public List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(Integer minRange, Integer maxRange)
+    {
+        return bathroomAccessoriesRepository.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange);
+    }
+    public List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(Integer minRange, Integer maxRange)
+    {
+        return bathroomAccessoriesRepository.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange);
+    }
+    public List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(Integer minRange, Integer maxRange)
+    {
+        return bathroomAccessoriesRepository.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange);
     }
 }
