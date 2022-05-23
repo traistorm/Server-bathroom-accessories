@@ -1,25 +1,14 @@
 package com.example.server.Controller;
 
 import com.example.server.Entity.*;
-import com.example.server.Repository.BathroomAccessoriesRepository;
-import com.example.server.Repository.CoatHangerRepository;
-import com.example.server.Repository.NewsRepository;
-import com.example.server.Repository.StudentRepository;
 import com.example.server.Service.*;
-import com.google.gson.Gson;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.example.server.Utilities.Function.tokenAuthentication;
 import static com.example.server.Utilities.Function.tokenInitialization;
@@ -112,16 +101,16 @@ public class RestAPI {
     @GetMapping("/bathroomaccessories")
     @ResponseBody
     public ResponseEntity<List<BathroomAccessories>> findAllBathroomAccessories(@RequestParam(name = "page", required = false) Integer page,
-                                                                                @RequestParam(name = "itemsperpage", required = false) Integer itemsperpgae,
+                                                                                @RequestParam(name = "itemsperpage", required = false) Integer itemsperpage,
                                                                                 @RequestParam(name = "minRange", required = false) Integer minRange,
                                                                                 @RequestParam(name = "maxRange", required = false) Integer maxRange,
                                                                                 @RequestParam(name = "sortType", required = false) String sortType) // Lấy danh sách tất cả các sản phẩm
     {
-        if (page != null && itemsperpgae != null && minRange == null && maxRange == null)
+        if (page != null && itemsperpage != null && minRange == null && maxRange == null)
         {
-            return new ResponseEntity<>(bathroomAccessoriesService.finAllInPage(page, itemsperpgae), HttpStatus.OK);
+            return new ResponseEntity<>(bathroomAccessoriesService.finAllInPage(page, itemsperpage), HttpStatus.OK);
         }
-        else if (page != null && itemsperpgae != null && minRange != null && maxRange != null)
+        else if (page != null && itemsperpage != null && minRange != null && maxRange != null)
         {
             // We will chekc sort Type :
             // price increase, price decrease and most viewed;
@@ -129,22 +118,22 @@ public class RestAPI {
             {
                 switch (sortType) {
                     case "priceIncrease":
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
 
                     case "priceDecrease":
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
 
                     case "mostView":
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
 
                     default:
-                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
+                        return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
 
                 }
             }
             else
             {
-                return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange, page, itemsperpgae), HttpStatus.OK);
+                return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetween(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
             }
         }
         else
