@@ -2,6 +2,7 @@ package com.example.server.Entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -22,5 +23,6 @@ public class CoatHanger {
     private String brand;
     private String insurance;
     private String material;
+    @Column(length = 1024)
     private String describe;
 }
