@@ -22,4 +22,5 @@ public class BathroomAccessories {
     private String brand;
     private String insurance;
     private String material;
+    private String describe;
 }
