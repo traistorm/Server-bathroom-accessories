@@ -116,6 +116,7 @@ public class RestAPI {
             // price increase, price decrease and most viewed;
             if (sortType != null)
             {
+                
                 switch (sortType) {
                     case "priceIncrease":
                         return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
