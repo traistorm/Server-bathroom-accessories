@@ -172,16 +172,53 @@ public class RestAPI {
     // Api for Coat Hanger
     @GetMapping("/coathanger")
     @ResponseBody
-    public ResponseEntity<List<CoatHanger>> findAllCoatHanger() // Lấy danh sách tất cả các loại mắc áo
+    public ResponseEntity<List<CoatHanger>> findAllCoatHanger(@RequestParam(name = "page", required = false) Integer page,
+                                                              @RequestParam(name = "itemsperpage", required = false) Integer itemsperpage,
+                                                              @RequestParam(name = "minRange", required = false) Integer minRange,
+                                                              @RequestParam(name = "maxRange", required = false) Integer maxRange,
+                                                              @RequestParam(name = "sortType", required = false) String sortType) // Lấy danh sách tất cả các loại mắc áo
     {
-        List<CoatHanger> coatHangerList = coatHangerService.findAll();
-        if (coatHangerList.size() > 0)
+        if (page != null && itemsperpage != null && minRange == null && maxRange == null)
         {
-            return new ResponseEntity<>(coatHangerList, HttpStatus.OK);
+            return new ResponseEntity<>(coatHangerService.finAllInPage(page, itemsperpage), HttpStatus.OK);
+        }
+        else if (page != null && itemsperpage != null && minRange != null && maxRange != null)
+        {
+            // We will chekc sort Type :
+            // price increase, price decrease and most viewed;
+            if (sortType != null)
+            {
+                switch (sortType) {
+                    case "priceIncrease":
+                        return new ResponseEntity<>(coatHangerService.findCoatHangerByNewpriceBetweenOrderByNewpriceAsc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
+
+                    case "priceDecrease":
+                        return new ResponseEntity<>(coatHangerService.findCoatHangerByNewpriceBetweenOrderByNewpriceDesc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
+
+                    case "mostView":
+                        return new ResponseEntity<>(coatHangerService.findCoatHangerByNewpriceBetweenOrderByMostViewDesc(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
+
+                    default:
+                        return new ResponseEntity<>(coatHangerService.findCoatHangerByNewpriceBetween(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
+
+                }
+            }
+            else
+            {
+                return new ResponseEntity<>(coatHangerService.findCoatHangerByNewpriceBetween(minRange, maxRange, page, itemsperpage), HttpStatus.OK);
+            }
         }
         else
         {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            List<CoatHanger> coatHangerList = coatHangerService.findAll();
+            if (coatHangerList.size() > 0)
+            {
+                return new ResponseEntity<>(coatHangerList, HttpStatus.OK);
+            }
+            else
+            {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
     }
 

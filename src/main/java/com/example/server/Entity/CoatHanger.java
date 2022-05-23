@@ -23,6 +23,5 @@ public class CoatHanger {
     private String brand;
     private String insurance;
     private String material;
-    @Column(length = 1024)
     private String describe;
 }
