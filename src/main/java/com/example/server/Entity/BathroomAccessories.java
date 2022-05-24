@@ -16,8 +16,6 @@ public class BathroomAccessories {
     private String name;
     private Integer newprice;
     private Integer oldprice;
-    
-    private String producttype;
     private String status;
     private String origin;
     private String productcode;
@@ -26,4 +24,5 @@ public class BathroomAccessories {
     private String insurance;
     private String material;
     private String describe;
+    private String producttype;
 }
