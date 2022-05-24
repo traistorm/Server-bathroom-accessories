@@ -14,5 +14,6 @@ public interface BathroomAccessoriesRepository extends JpaRepository<BathroomAcc
     List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetween(Integer minRange, Integer maxRange);
     List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceAsc(Integer minRange, Integer maxRange);
     List<BathroomAccessories> findBathroomAccessoriesByNewpriceBetweenOrderByNewpriceDesc(Integer minRange, Integer maxRange);
+    List<BathroomAccessories> findBathroomAccessoriesByProducttype(String productType);
 }
 

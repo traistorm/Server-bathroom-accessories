@@ -67,4 +67,8 @@ public class BathroomAccessoriesService {
         }
         return bathroomAccessoriesList.subList((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     }
+    public List<BathroomAccessories> findBathroomAccessoriesByProducttype(String productType)
+    {
+        return bathroomAccessoriesRepository.findBathroomAccessoriesByProducttype(productType);
+    }
 }

@@ -152,7 +152,19 @@ public class RestAPI {
 
         //return null;
     }
-
+    @GetMapping("/bathroomaccessories/producttype/{producttypeid}")
+    @ResponseBody
+    public ResponseEntity<List<BathroomAccessories>> findBathroomAccessoriesByProductType(@PathVariable("producttypeid") Integer producttypeid) // Lấy một sản phẩm bằng producttypeid, 1 : Sản phẩm lẻ, 2 : Sản phẩm bộ
+    {
+        if (producttypeid == 1)
+        {
+            return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByProducttype("retail products"), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(bathroomAccessoriesService.findBathroomAccessoriesByProducttype("products in sets"), HttpStatus.OK);
+        }
+    }
     @GetMapping("/bathroomaccessories/{id}")
     @ResponseBody
     public ResponseEntity<BathroomAccessories> findBathroomAccessoriesById(@PathVariable("id") Integer id) // Lấy một sản phẩm bằng id
