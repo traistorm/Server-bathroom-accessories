@@ -284,8 +284,17 @@ public class RestAPI {
     @ResponseBody
     public ResponseEntity<String> createNews(@RequestParam(name = "data") String data) // Lấy một mắc áo bằng id
     {
-        
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        News news = new News();
+        try
+        {
+            news.setContent(data);
+            return new ResponseEntity<>(data, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.toString(), HttpStatus.OK);
+        }
+
 
     }
     //
