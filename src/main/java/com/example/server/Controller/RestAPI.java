@@ -288,7 +288,7 @@ public class RestAPI {
         try
         {
             news.setContent(data);
-            return new ResponseEntity<>(data, HttpStatus.OK);
+            return new ResponseEntity<>(news.toString(), HttpStatus.OK);
         }
         catch (Exception e)
         {
