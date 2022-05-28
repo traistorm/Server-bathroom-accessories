@@ -30,4 +30,8 @@ public class NewsService {
         }
         return newsList.subList((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage);
     }
+    public void save(News news)
+    {
+        newsRepository.save(news);
+    }
 }

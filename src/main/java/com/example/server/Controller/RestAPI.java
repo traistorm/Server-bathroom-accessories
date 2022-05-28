@@ -280,5 +280,16 @@ public class RestAPI {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PostMapping("/news")
+    @ResponseBody
+    public ResponseEntity<News> createNews(@RequestParam(name = "data") String data) // Lấy một mắc áo bằng id
+    {
+        News news = new News();
+        news.setId(1);
+        news.setContent(data);
+        newsService.save(news);
+        return new ResponseEntity<>(news, HttpStatus.OK);
+
+    }
     //
 }
