@@ -253,16 +253,16 @@ public class RestAPI {
     // Api for News
     @GetMapping("/news")
     @ResponseBody
-    public ResponseEntity<List<News>> findAllNews() // Lấy danh sách tất cả các loại mắc áo
+    public ResponseEntity<List<News>> findAllNews(@RequestParam(name = "page", required = false) Integer page,
+                                                  @RequestParam(name = "itemsperpage", required = false) Integer itemsperpage) // Lấy danh sách tất cả các loại mắc áo
     {
-        List<News> newsList = newsService.findAll();
-        if (newsList.size() > 0)
+        if (page != null && itemsperpage != null)
         {
-            return new ResponseEntity<>(newsList, HttpStatus.OK);
+            return new ResponseEntity<>(newsService.finAllInPage(page, itemsperpage), HttpStatus.OK);
         }
         else
         {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.OK);
         }
     }
 
