@@ -251,7 +251,7 @@ public class RestAPI {
     //
 
     // Api for News
-    @GetMapping("/news")
+    @GetMapping("/news") // Get all news
     @ResponseBody
     public ResponseEntity<List<News>> findAllNews(@RequestParam(name = "page", required = false) Integer page,
                                                   @RequestParam(name = "itemsperpage", required = false) Integer itemsperpage) // Lấy danh sách tất cả các loại mắc áo
@@ -266,7 +266,7 @@ public class RestAPI {
         }
     }
 
-    @GetMapping("/news/{id}")
+    @GetMapping("/news/{id}") // Get a news with id
     @ResponseBody
     public ResponseEntity<News> findNewsById(@PathVariable("id") Integer id) // Lấy một mắc áo bằng id
     {
@@ -280,14 +280,14 @@ public class RestAPI {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping("/news")
+    @PostMapping("/news") // Save new news
     @ResponseBody
     public ResponseEntity<String> createNews(@RequestParam(name = "data") String data) // Lấy một mắc áo bằng id
     {
         News news = new News();
         try
         {
-            news.setId(1);
+            //news.setId(1);
             news.setContent(data);
             newsService.save(news);
             return new ResponseEntity<>(news.toString(), HttpStatus.OK);
