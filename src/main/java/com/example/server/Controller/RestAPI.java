@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -287,9 +288,14 @@ public class RestAPI {
         News news = new News();
         try
         {
-            
+
             //news.setId(1);
             news.setContent(data);
+            news.setDescribe("abc");
+            news.setPoster("Cuong");
+            news.setImagelink("https");
+            news.setTitle("Title");
+            news.setPosttime(LocalDate.parse("2000-02-20"));
             newsService.save(news);
             return new ResponseEntity<>(news.toString(), HttpStatus.OK);
         }
