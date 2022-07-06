@@ -14,7 +14,7 @@ public class News {
     private Integer id;
     private String title;
     private String content;
-    String describe;
+    private String describe;
     private LocalDate posttime;
     private String poster;
     private String imagelink;
